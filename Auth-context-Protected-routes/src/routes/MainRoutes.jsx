@@ -1,12 +1,25 @@
-import React from 'react'
-import {route, routes} from "react-router-dom"
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Dashboard from "../pages/Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
 
 const MainRoutes = () => {
   return (
-    <routes>
-        <route path="/" />
-    </routes>
-  )
-}
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+};
 
-export default MainRoutes
+export default MainRoutes;
